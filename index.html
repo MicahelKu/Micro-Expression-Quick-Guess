@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>微表情速猜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>微表情速猜</h1>
+      <p class="subtitle">在极短时间内闪现表情，考验你的敏锐度与反应！</p>
+    </header>
+
+    <section class="controls" aria-label="游戏设置">
+      <div class="control-group">
+        <label for="difficulty">难度</label>
+        <select id="difficulty" aria-label="选择难度">
+          <option value="novice">新手（500ms）</option>
+          <option value="intermediate">进阶（300ms）</option>
+          <option value="expert">专家（200ms）</option>
+          <option value="custom">自定</option>
+        </select>
+      </div>
+
+      <div class="control-group custom-row" id="custom-row" hidden>
+        <label for="flashMs">闪现时长（ms）</label>
+        <input type="number" id="flashMs" min="50" step="10" value="250" />
+
+        <label for="maskMs">掩蔽时长（ms）</label>
+        <input type="number" id="maskMs" min="0" step="10" value="300" />
+      </div>
+
+      <div class="control-group">
+        <label for="rounds">轮数</label>
+        <input type="number" id="rounds" min="1" max="100" step="1" value="12" />
+      </div>
+
+      <button id="startBtn" class="primary">开始游戏（空格）</button>
+    </section>
+
+    <section class="status" aria-live="polite">
+      <div>进度：<span id="roundLabel">0 / 0</span></div>
+      <div>得分：<span id="scoreLabel">0</span></div>
+      <div>反应：<span id="rtLabel">—</span></div>
+    </section>
+
+    <section class="stage" aria-label="刺激区域">
+      <div id="stimulus" class="stimulus" aria-hidden="true">准备</div>
+    </section>
+
+    <section class="choices" aria-label="选择情绪">
+      <button class="choice" data-emotion="joy">1 喜</button>
+      <button class="choice" data-emotion="anger">2 怒</button>
+      <button class="choice" data-emotion="sadness">3 哀</button>
+      <button class="choice" data-emotion="fear">4 惧</button>
+      <button class="choice" data-emotion="disgust">5 厌</button>
+      <button class="choice" data-emotion="surprise">6 惊</button>
+    </section>
+
+    <section id="feedback" class="feedback" aria-live="assertive"></section>
+
+    <section id="result" class="result" hidden>
+      <h2>结算</h2>
+      <div class="summary">
+        <div>准确率：<strong id="accuracy">0%</strong></div>
+        <div>平均反应时（正确）：<strong id="avgRt">—</strong></div>
+      </div>
+      <details class="details">
+        <summary>查看每轮详情</summary>
+        <div id="detailsList"></div>
+      </details>
+      <div class="actions">
+        <button id="restartBtn" class="primary">再来一轮（R）</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>快捷键：数字 1-6 选择情绪，空格开始/下一轮，R 重新开始。</p>
+    </footer>
+  </main>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
