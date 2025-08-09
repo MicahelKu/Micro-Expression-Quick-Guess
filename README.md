@@ -12,7 +12,6 @@
 1. 直接双击打开 `index.html`（推荐用 Chrome/Edge/Firefox）。
 2. 或者在该目录开本地服务器：
    ```bash
-   cd /Users/wenhaoku/game
    python3 -m http.server 8000
    ```
    然后访问 `http://localhost:8000`。
